@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3U প্লেলিস্ট প্রসেসর (SPA)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>M3U প্লেলিস্ট প্রসেসর (SPA)</h1>
+
+        <form id="m3u-form">
+            <div class="input-section">
+                <label for="m3u_url">M3U ফাইলের URL দিন:</label>
+                <input type="url" id="m3u_url" name="m3u_url" placeholder="https://..." required>
+                <button type="submit" id="submit-button">প্রসেস করুন</button>
+            </div>
+        </form>
+
+        <div id="loading" style="display: none;">লোড হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন...</div>
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="results">
+            </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+/* General Styles (Base for Desktop and Mobile) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 10px; /* Reduced base padding */
+    background-color: #f4f4f4;
+    color: #333;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+.container {
+    width: 100%; /* Use full width */
+    max-width: 950px; /* Keep max-width for larger screens */
+    margin: auto;
+    background: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8em; /* Adjust base size */
+}
+
+/* Input Form */
+#m3u-form .input-section {
+    display: flex;
+    flex-direction: column; /* Stack vertically by default on mobile */
+    gap: 12px; /* Adjust gap for vertical layout */
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+#m3u-form label {
+    font-weight: bold;
+    margin-bottom: -5px; /* Reduce space below label */
+}
+
+#m3u-form input[type="url"] {
+    width: 100%; /* Full width */
+    padding: 12px 10px; /* Slightly larger padding for easier touch */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: unset; /* Remove min-width */
+    font-size: 1em; /* Ensure readable font size */
+    box-sizing: border-box;
+}
+
+#m3u-form button {
+    width: 100%; /* Full width button */
+    padding: 12px 20px; /* Larger padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.1em; /* Slightly larger button text */
+    box-sizing: border-box;
+    margin-top: 5px; /* Add some space above button */
+}
+#m3u-form button:hover {
+    background-color: #0056b3;
+}
+#m3u-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+/* Loading and Error Messages */
+#loading {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin: 25px 0;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+/* Results Area */
+#results {
+    margin-top: 15px;
+}
+
+/* Group Styling */
+.channel-group {
+    margin-bottom: 25px;
+    padding-top: 5px;
+}
+
+.group-title {
+    font-size: 1.3em; /* Smaller group title */
+    color: #0056b3;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+}
+
+/* Channel Card Styling */
+.channel-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px; /* Reduced padding */
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically within card */
+    align-items: flex-start; /* Align items to start */
+    gap: 8px; /* Gap between vertical elements */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.card-header { /* New container for logo and info side-by-side */
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     width: 100%;
+}
+
+
+.channel-card img {
+    max-width: 45px; /* Smaller logo */
+    max-height: 30px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    border: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.channel-info {
+    flex-grow: 1; /* Allow info to take remaining space */
+    min-width: unset;
+    margin-right: 0; /* Remove margin */
+    width: 100%; /* Take full width in vertical layout */
+}
+
+.channel-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 1em; /* Adjust name size */
+    color: #333;
+    font-weight: 600; /* Slightly bolder name */
+}
+
+.channel-info .link,
+.channel-info .logo-link {
+    word-break: break-all;
+    font-size: 0.8em;
+    color: #555;
+    background-color: #f5f5f5;
+    padding: 3px 6px;
+    border-radius: 3px;
+    display: block; /* Make them block elements */
+    max-width: 100%;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.channel-info .logo-link {
+    color: #777;
+    background-color: transparent; /* No background for logo link text */
+    padding: 0;
+    margin-top: 5px;
+}
+
+/* Status Indicator Styling */
+.status {
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em; /* Smaller status font */
+    min-width: 70px;
+    text-align: center;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-top: 5px; /* Space above status when stacked */
+    align-self: flex-start; /* Align to the start */
+}
+
+/* Status colors remain the same - re-list for clarity */
+.status.Pending { background-color: #e9ecef; color: #495057; border-color: #ced4da; }
+.status.Checking { background-color: #fff3cd; color: #856404; border-color: #ffeeba; animation: pulse 1.5s infinite; }
+.status.Working { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+.status.Not\.Working, .status.Timeout, .status.Error, .status.N\/A { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+
+
+/* Button Styling */
+.button-group {
+    display: flex;
+    gap: 10px; /* Increased gap */
+    flex-wrap: wrap;
+    margin-left: 0; /* Remove margin-left */
+    align-items: center;
+    width: 100%; /* Full width */
+    margin-top: 8px; /* Space above buttons */
+}
+
+.copy-button, .copy-logo-button {
+    padding: 8px 12px; /* Good tap size */
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    white-space: nowrap;
+    flex-grow: 1; /* Allow buttons to grow and share space */
+    text-align: center; /* Center text in button */
+}
+
+.copy-button:hover, .copy-logo-button:hover {
+    background-color: #5a6268;
+}
+.copy-button:active, .copy-logo-button:active {
+     transform: scale(0.98); /* Subtle click feedback */
+}
+
+.copy-button.copied, .copy-logo-button.copied {
+    background-color: #28a745;
+}
+
+/* Animation for Checking Status */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+
+/* ------------------------- */
+/* Media Queries for Larger Screens (e.g., Tablets and Desktops) */
+/* ------------------------- */
+
+/* Apply styles for screens wider than 600px */
+@media (min-width: 601px) {
+    body {
+        padding: 20px; /* Restore padding */
+    }
+
+    .container {
+        padding: 30px; /* Restore padding */
+    }
+
+    h1 {
+       font-size: 2em; /* Restore size */
+    }
+
+     #m3u-form .input-section {
+        flex-direction: row; /* Horizontal layout for form */
+        align-items: center; /* Align items center */
+        gap: 15px; /* Restore gap */
+    }
+     #m3u-form label {
+         margin-bottom: 0; /* Remove bottom margin */
+     }
+     #m3u-form input[type="url"] {
+        width: auto; /* Allow input to take available space */
+        flex-grow: 1;
+     }
+     #m3u-form button {
+        width: auto; /* Button takes content width */
+        flex-shrink: 0;
+        margin-top: 0;
+     }
+
+    .group-title {
+       font-size: 1.5em; /* Restore size */
+    }
+
+    .channel-card {
+       flex-direction: row; /* Horizontal layout for card */
+       align-items: center;
+       padding: 12px 15px;
+       gap: 15px;
+    }
+
+     /* Remove the card-header wrapper effect for larger screens */
+     .card-header {
+          display: contents; /* Let items flow as if wrapper wasn't there */
+     }
+
+
+     .channel-card img {
+         max-width: 50px; /* Can be slightly larger if desired */
+         max-height: 35px;
+     }
+
+    .channel-info {
+       width: auto; /* Reset width */
+       flex-grow: 1; /* Allow info to grow */
+       margin-right: 10px; /* Add back margin */
+    }
+     .channel-info .link, .channel-info .logo-link {
+          display: inline-block; /* Inline again */
+          margin-top: 3px;
+     }
+     .channel-info .logo-link {
+          display: block; /* Keep logo link on new line */
+     }
+
+    .status {
+        margin-top: 0; /* Remove top margin */
+        align-self: center; /* Center vertically */
+        font-size: 0.8em;
+        min-width: 80px;
+    }
+
+    .button-group {
+       margin-left: auto; /* Push buttons right */
+       width: auto; /* Auto width */
+       flex-wrap: nowrap; /* Prevent button wrapping */
+       margin-top: 0;
+    }
+    .copy-button, .copy-logo-button {
+        flex-grow: 0; /* Don't grow buttons */
+        font-size: 0.85em;
+    }
+}
+
+/* Further adjustments for even larger screens if needed */
+@media (min-width: 769px) {
+    .channel-card img {
+         max-width: 60px;
+         max-height: 40px;
+    }
+     .channel-info h3 {
+          font-size: 1.1em;
+     }
+     .channel-info .link, .channel-info .logo-link {
+          font-size: 0.85em;
+     }
+}

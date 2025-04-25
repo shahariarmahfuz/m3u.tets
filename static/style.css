@@ -132,11 +132,12 @@ h1 {
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-.card-header { /* New container for logo and info side-by-side */
+/* New container for logo and info side-by-side */
+.card-header {
      display: flex;
      align-items: center;
      gap: 10px;
-     width: 100%;
+     width: 100%; /* Takes full width of card */
 }
 
 
@@ -147,7 +148,7 @@ h1 {
     border-radius: 4px;
     background-color: #f0f0f0;
     border: 1px solid #eee;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .channel-info {
@@ -194,24 +195,66 @@ h1 {
     min-width: 70px;
     text-align: center;
     border: 1px solid transparent;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent status from shrinking */
     white-space: nowrap;
     margin-top: 5px; /* Space above status when stacked */
-    align-self: flex-start; /* Align to the start */
+    align-self: flex-start; /* Align to the start when stacked */
 }
 
-/* Status colors remain the same - re-list for clarity */
-.status.Pending { background-color: #e9ecef; color: #495057; border-color: #ced4da; }
-.status.Checking { background-color: #fff3cd; color: #856404; border-color: #ffeeba; animation: pulse 1.5s infinite; }
-.status.Working { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
-.status.Not\.Working, .status.Timeout, .status.Error, .status.N\/A { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+/* --- NEW/UPDATED Status Colors (Replace or augment your existing ones) --- */
+/* These map to the new classes added by updateStatusUI in script.js */
+
+.status.pending { /* Initial state */
+    background-color: #e9ecef;
+    color: #495057;
+    border-color: #ced4da;
+}
+
+.status.checking { /* While status is being checked */
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+    animation: pulse 1.5s infinite; /* Keep pulse animation */
+}
+
+.status.working-stream { /* Successfully looks like a stream */
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.status.working-other { /* Reachable, but content not recognized as stream */
+    background-color: #cce5ff; /* Light blue */
+    color: #004085; /* Darker blue */
+    border-color: #b8daff;
+    /* Optional: add a warning icon or different style */
+}
+
+.status.not-working { /* Generic failure state (HTTP error, timeout, connection error, etc.) */
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.status.not-available { /* No URL provided for this channel */
+    background-color: #e9ecef;
+    color: #495057;
+    border-color: #ced4da;
+    font-style: italic;
+}
+
+/* You can keep your specific old classes if you have unique styles,
+   but the new ones should cover all states now.
+   Example old classes to remove or update:
+   .status.Working, .status.Not\.Working, .status.Timeout, .status.Error, .status.N\/A
+*/
 
 
 /* Button Styling */
 .button-group {
     display: flex;
     gap: 10px; /* Increased gap */
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
     margin-left: 0; /* Remove margin-left */
     align-items: center;
     width: 100%; /* Full width */
@@ -228,8 +271,9 @@ h1 {
     font-size: 0.85em;
     transition: background-color 0.3s ease, transform 0.1s ease;
     white-space: nowrap;
-    flex-grow: 1; /* Allow buttons to grow and share space */
+    flex-grow: 1; /* Allow buttons to grow and share space when wrapped */
     text-align: center; /* Center text in button */
+    min-width: 100px; /* Minimum width for buttons */
 }
 
 .copy-button:hover, .copy-logo-button:hover {
@@ -240,7 +284,7 @@ h1 {
 }
 
 .copy-button.copied, .copy-logo-button.copied {
-    background-color: #28a745;
+    background-color: #28a745; /* Green when copied */
 }
 
 /* Animation for Checking Status */
@@ -255,7 +299,7 @@ h1 {
 /* Media Queries for Larger Screens (e.g., Tablets and Desktops) */
 /* ------------------------- */
 
-/* Apply styles for screens wider than 600px */
+/* Apply styles for screens wider than 601px */
 @media (min-width: 601px) {
     body {
         padding: 20px; /* Restore padding */
@@ -298,9 +342,13 @@ h1 {
        gap: 15px;
     }
 
-     /* Remove the card-header wrapper effect for larger screens */
+     /* For larger screens, let logo and info be side-by-side naturally */
      .card-header {
-          display: contents; /* Let items flow as if wrapper wasn't there */
+          display: flex; /* Keep it flex */
+          align-items: center; /* Vertically align */
+          gap: 10px; /* Gap between logo and info */
+          width: auto; /* Allow flex container to size naturally */
+          flex-grow: 1; /* Allow header (logo+info) to take space */
      }
 
 
@@ -315,12 +363,10 @@ h1 {
        margin-right: 10px; /* Add back margin */
     }
      .channel-info .link, .channel-info .logo-link {
-          display: inline-block; /* Inline again */
+          display: block; /* Keep them block for structure */
           margin-top: 3px;
      }
-     .channel-info .logo-link {
-          display: block; /* Keep logo link on new line */
-     }
+
 
     .status {
         margin-top: 0; /* Remove top margin */
@@ -334,10 +380,12 @@ h1 {
        width: auto; /* Auto width */
        flex-wrap: nowrap; /* Prevent button wrapping */
        margin-top: 0;
+       flex-shrink: 0; /* Prevent button group from shrinking */
     }
     .copy-button, .copy-logo-button {
         flex-grow: 0; /* Don't grow buttons */
         font-size: 0.85em;
+        min-width: unset; /* Remove min-width constraint on larger screens */
     }
 }
 
@@ -353,4 +401,10 @@ h1 {
      .channel-info .link, .channel-info .logo-link {
           font-size: 0.85em;
      }
-}
+     .status {
+          min-width: 90px;
+     }
+     .copy-button, .copy-logo-button {
+         padding: 8px 15px;
+     }
+        }
